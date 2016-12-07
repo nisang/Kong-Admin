@@ -46,7 +46,7 @@
 * 4.`docker run -it --link kong:kong ---p 80:80 kong:admin`
 
 * 5.访问
-  a:http://{{ip}}/   # 无需密码与用户名登录即可
+  a:http://{{ip}}/   # user:admin passwd:admin
   b:进去可删除添加api映射
 跑起来如下图：
 
