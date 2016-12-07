@@ -20,6 +20,34 @@
 2. 加入 [lua-resty-http](https://github.com/pintsized/lua-resty-http) 和 [lua-resty-template](https://github.com/bungle/lua-resty-template) 的支持。即把对应的 lua 文件加入到 /openresty/lualib/resty 中即可。
 3. 使用 conf 目录下的 nginx.conf ，即跑 nginx 的时候指定该文件。指定好目录，例如： `./nginx -p /Users/yunxin/githubProject/myPro/Kong-Admin -c /Users/yunxin/githubProject/myPro/Kong-Admin/conf/nginx.conf`
 
+# Docker 运行
+启动kong
+0.1 docker run -d --name kong-database \
+                -p 9042:9042 \
+                cassandra:2.2
+0.2 docker run -d --name kong \
+    --link kong-database:kong-database \
+    -e "KONG_DATABASE=cassandra" \
+    -e "KONG_CASSANDRA_CONTACT_POINTS=kong-database" \
+    -e "KONG_PG_HOST=kong-database" \
+    -p 8000:8000 \
+    -p 8443:8443 \
+    -p 8001:8001 \
+    -p 7946:7946 \
+    -p 7946:7946/udp \
+    kong
+
+1.git clone https://github.com/nisang/Kong-Admin
+
+2.cd Kong-Admin
+
+3.docker build -t kong:admin .
+
+4.docker run -it --link kong:kong ---p 80:80 kong:admin
+
+5.访问
+  a:http://{{ip}}/   # 无需密码与用户名登录即可
+  b:进去可删除添加api映射
 跑起来如下图：
 
 ![KongAPI1](http://7xrzlm.com1.z0.glb.clouddn.com/kongapi.png?imageMogr2/thumbnail/!25p)
