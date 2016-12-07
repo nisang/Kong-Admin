@@ -17,7 +17,7 @@ RUN luarocks install luasocket
 
 # exec kong-admin
 RUN yum -y install git
-RUN cd /opt/ && git clone https://github.com/pzxwhc/Kong-Admin.git
+RUN cd /opt/ && git clone https://github.com/nisang/Kong-Admin.git
 RUN cd /opt/Kong-Admin && git checkout -b aliyun origin/aliyun
 RUN cp /opt/Kong-Admin/import/* /opt/openResty/lualib/resty
 CMD cd /opt/openResty/nginx/sbin && ./nginx -p /opt/Kong-Admin -c /opt/Kong-Admin/conf/nginx.conf && tail -f /opt/Kong-Admin/logs/error.log
