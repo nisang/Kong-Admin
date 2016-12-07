@@ -22,10 +22,10 @@
 
 # Docker 运行
 启动kong
-0.1 docker run -d --name kong-database \
+* 0.1 `docker run -d --name kong-database \
                 -p 9042:9042 \
-                cassandra:2.2
-0.2 docker run -d --name kong \
+                cassandra:2.2`
+* 0.2 `docker run -d --name kong \
     --link kong-database:kong-database \
     -e "KONG_DATABASE=cassandra" \
     -e "KONG_CASSANDRA_CONTACT_POINTS=kong-database" \
@@ -35,17 +35,17 @@
     -p 8001:8001 \
     -p 7946:7946 \
     -p 7946:7946/udp \
-    kong
+    kong`
 
-1.git clone https://github.com/nisang/Kong-Admin
+* 1.`git clone https://github.com/nisang/Kong-Admin`
 
-2.cd Kong-Admin
+* 2.`cd Kong-Admin`
 
-3.docker build -t kong:admin .
+* 3.`docker build -t kong:admin .`
 
-4.docker run -it --link kong:kong ---p 80:80 kong:admin
+* 4.`docker run -it --link kong:kong ---p 80:80 kong:admin`
 
-5.访问
+* 5.访问
   a:http://{{ip}}/   # 无需密码与用户名登录即可
   b:进去可删除添加api映射
 跑起来如下图：
