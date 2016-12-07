@@ -11,8 +11,8 @@ local password = param.password
 
 ngx.log(ngx.DEBUG,"username = ",username," password = ",password)
 
-local correct_username = os.getenv("")
-local correct_password = os.getenv("")
+local correct_username = os.getenv("KONGADMIN_USER")
+local correct_password = os.getenv("KONGADMIN_PASSWD")
 
 if username == correct_username then 
     if password == correct_password then
