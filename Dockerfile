@@ -15,6 +15,11 @@ RUN cd /home/whc/luajit-rocks/build && cmake ..
 RUN cd /home/whc/luajit-rocks/build && make install
 RUN luarocks install luasocket
 
+# ENV
+
+ENV KONGADMIN_USER admin
+ENV KONGADMIN_PASSWD admin
+
 # exec kong-admin
 RUN yum -y install git
 RUN cd /opt/ && git clone https://github.com/nisang/Kong-Admin.git
